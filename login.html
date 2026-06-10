@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вход в аккаунт</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+   <header>
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Колледж ККОТиП</div>
+                <div class="nav-links">
+                    <a href="index.html">Главная</a>
+                    <a href="teachers.html">Список преподавателей</a>
+                    <a href="kursi.html">Список специальностей</a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <h1>Вход в аккаунт</h1>
+        
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Введите ваш email"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label for="password">Пароль</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Введите пароль"
+                    required
+                >
+            </div>
+
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="remember">
+                    Запомнить меня
+                </label>
+            </div>
+
+            <button type="submit">Войти</button>
+
+            <div class="form-footer">
+                <p><a href="#">Забыли пароль?</a></p>
+                <p>Нет аккаунта? <a href="register.html">Зарегистрируйтесь</a></p>
+            </div>
+        </form>
+    </main>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const storedUser = JSON.parse(localStorage.getItem('user'));
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            if (storedUser && storedUser.email === email && storedUser.password === password) {
+                alert('Вход выполнен!');
+                window.location.href = 'index.html';
+            } else {
+                alert('Неверный email или пароль!');
+            }
+        });
+    </script>
+</body>
+</html>
